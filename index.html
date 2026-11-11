@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Салон красоты «Регина» | Зеленоградск</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+    :root{
+        --bg:#ffffff;
+        --bg-soft:#f9f8f6;
+        --ink:#1f1d1b;
+        --ink-soft:#6e6a66;
+        --line:#e6e3df;
+        --accent:#a67c6d;
+        --accent-soft:#f1e9e5;
+        --radius:4px;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
+    body{
+        font-family:'Montserrat',sans-serif;
+        background:var(--bg);
+        color:var(--ink);
+        line-height:1.7;
+        font-weight:300;
+        -webkit-font-smoothing:antialiased;
+    }
+
+    h1,h2,h3,h4{
+        font-family:'Cormorant Garamond',serif;
+        font-weight:500;
+        line-height:1.15;
+        letter-spacing:.2px;
+        color:var(--ink);
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block;object-fit:cover}
+
+    .container{max-width:1180px;margin:0 auto;padding:0 32px}
+
+    .eyebrow{
+        font-size:11px;
+        letter-spacing:3px;
+        text-transform:uppercase;
+        color:var(--accent);
+        font-weight:500;
+        margin-bottom:22px;
+    }
+
+    .section{padding:110px 0}
+    .section--soft{background:var(--bg-soft)}
+
+    /* Кнопки */
+    .btn{
+        display:inline-flex;
+        align-items:center;
+        gap:10px;
+        background:var(--ink);
+        color:#fff;
+        padding:15px 32px;
+        font-family:'Montserrat',sans-serif;
+        font-size:12px;
+        font-weight:500;
+        letter-spacing:2px;
+        text-transform:uppercase;
+        border:1px solid var(--ink);
+        border-radius:var(--radius);
+        cursor:pointer;
+        transition:background .3s,color .3s,border-color .3s;
+    }
+    .btn:hover{background:transparent;color:var(--ink)}
+    .btn--ghost{background:transparent;color:var(--ink)}
+    .btn--ghost:hover{background:var(--ink);color:#fff}
+
+    /* Шапка */
+    header{
+        position:sticky;top:0;z-index:100;
+        background:rgba(255,255,255,.94);
+        backdrop-filter:blur(10px);
+        border-bottom:1px solid var(--line);
+    }
+    .header-inner{
+        display:flex;align-items:center;justify-content:space-between;
+        gap:24px;flex-wrap:wrap;padding:20px 0;
+    }
+    .logo{
+        font-family:'Cormorant Garamond',serif;
+        font-size:28px;font-weight:600;letter-spacing:3px;
+        line-height:1;text-transform:uppercase;
+    }
+    .logo span{
+        display:block;font-family:'Montserrat',sans-serif;
+        font-size:9px;font-weight:400;letter-spacing:4px;
+        color:var(--ink-soft);margin-top:6px;text-transform:uppercase;
+    }
+    .nav{display:flex;gap:30px;flex-wrap:wrap}
+    .nav a{
+        font-size:11px;letter-spacing:2px;text-transform:uppercase;
+        color:var(--ink-soft);transition:color .3s;
+    }
+    .nav a:hover{color:var(--accent)}
+    .header-cta{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+    .header-phone{font-size:13px;font-weight:500;letter-spacing:.5px}
+    .header-phone i{color:var(--accent);margin-right:6px}
+    .rating{
+        font-size:11px;letter-spacing:1.5px;color:var(--ink-soft);
+        border:1px solid var(--line);padding:6px 14px;border-radius:40px;
+    }
+    .rating i{color:var(--accent);margin-right:4px}
+
+    /* Hero (Главный экран) */
+    .hero{padding:90px 0 0;background:var(--bg)}
+    .hero-grid{
+        display:flex;
+        gap:70px;
+        align-items:stretch; /* Выравниваем по высоте */
+        flex-wrap:wrap;
+    }
+    .hero-copy{
+        flex:1 1 480px;
+        display:flex;
+        flex-direction:column;
+        justify-content:space-between; /* Распределяем контент */
+    }
+    .hero-text-content h1{font-size:clamp(42px,5vw,72px);margin-bottom:30px}
+    .hero-text-content h1 em{font-style:italic;color:var(--accent)}
+    .hero-text-content p{
+        font-size:17px;color:var(--ink-soft);max-width:520px;margin-bottom:38px;
+    }
+    .hero-meta{
+        display:flex;gap:36px;flex-wrap:wrap;margin-top:50px;
+        padding-top:30px;border-top:1px solid var(--line);
+    }
+    .hero-meta div{min-width:120px}
+    .hero-meta b{
+        display:block;font-family:'Cormorant Garamond',serif;
+        font-size:34px;font-weight:500;line-height:1;
+    }
+    .hero-meta span{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft)}
+    
+    .hero-visual{
+        flex:1 1 420px;
+        display:flex;
+        flex-direction:column;
+        justify-content:flex-end; /* Прижимаем картинку вниз */
+    }
+    .hero-visual img{
+        width:100%;
+        height:100%;
+        min-height:560px; /* Задаем минимальную высоту */
+        max-height:680px;
+        border-radius:var(--radius);
+    }
+    .hero-visual figcaption{
+        margin-top:14px;font-size:11px;letter-spacing:2px;
+        text-transform:uppercase;color:var(--ink-soft);
+    }
+
+    /* Заголовок секции */
+    .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:60px}
+    .section-head h2{font-size:clamp(30px,4vw,52px);max-width:620px}
+    .section-head p{max-width:360px;font-size:15px;color:var(--ink-soft)}
+
+    /* Услуги и цены */
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+    .service-col{background:#fff;padding:44px 36px}
+    .service-col h3{
+        font-size:24px;margin-bottom:26px;padding-bottom:18px;
+        border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;
+    }
+    .service-col h3 i{font-size:18px;color:var(--accent)}
+    .service-col ul{list-style:none}
+    .service-col li{
+        font-size:14.5px;color:var(--ink-soft);padding:9px 0;
+        border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;gap:16px;
+    }
+    .service-col li:last-child{border-bottom:none}
+
+    .prices-strip{
+        display:flex;gap:1px;background:var(--line);
+        border:1px solid var(--line);margin-top:36px;
+    }
+    .prices-strip .price-cell{
+        flex:1 1 260px;background:#fff;padding:34px 36px;
+        display:flex;justify-content:space-between;align-items:center;gap:20px;
+    }
+    .price-cell .name{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-soft)}
+    .price-cell .val{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:500;color:var(--accent)}
+
+    /* О салоне + преимущества */
+    .about-grid{
+        display:flex;
+        gap:70px;
+        flex-wrap:wrap;
+        align-items:center; /* Центрируем контент по вертикали */
+    }
+    .about-visual{
+        flex:1 1 420px;
+        align-self:stretch; /* Растягиваем блок с картинкой на высоту текста */
+    }
+    .about-visual img{
+        width:100%;
+        height:100%; /* Картинка занимает 100% высоты родителя */
+        min-height:480px;
+        border-radius:var(--radius);
+    }
+    .about-copy{
+        flex:1 1 420px;
+        padding: 20px 0;
+    }
+    .about-copy h2{font-size:clamp(30px,4vw,50px);margin-bottom:26px}
+    .about-copy p{color:var(--ink-soft);font-size:16px;margin-bottom:18px}
+
+    .features{
+        display:grid;grid-template-columns:repeat(2,1fr);gap:0;
+        border-top:1px solid var(--line);margin-top:40px;
+    }
+    .feature{
+        padding:24px 24px 24px 0;border-bottom:1px solid var(--line);
+        display:flex;gap:14px;align-items:flex-start;
+    }
+    .feature i{color:var(--accent);font-size:16px;margin-top:6px}
+    .feature b{display:block;font-size:13px;font-weight:500;letter-spacing:.5px;margin-bottom:2px}
+    .feature span{font-size:13px;color:var(--ink-soft)}
+
+    /* Специалисты */
+    .team-text{max-width:760px;margin-bottom:56px}
+    .team-text h2{font-size:clamp(30px,4vw,50px);margin-bottom:22px}
+    .team-text p{color:var(--ink-soft);font-size:16px;margin-bottom:16px}
+    .specialists{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+    .specialist{border:1px solid var(--line);padding:32px 28px;background:#fff}
+    .specialist .num{
+        font-family:'Cormorant Garamond',serif;font-size:40px;color:var(--accent-soft);
+        line-height:1;margin-bottom:18px;
+    }
+    .specialist h3{font-size:22px;margin-bottom:10px}
+    .specialist p{font-size:13.5px;color:var(--ink-soft)}
+
+    /* CTA полоса */
+    .cta{
+        background:var(--ink);color:#fff;padding:90px 0;text-align:center;
+    }
+    .cta h2{
+        color:#fff;font-size:clamp(28px,4vw,48px);
+        letter-spacing:2px;text-transform:uppercase;margin-bottom:26px;
+    }
+    .cta h2 span{color:var(--accent)}
+    .cta .btn{background:#fff;color:var(--ink);border-color:#fff}
+    .cta .btn:hover{background:transparent;color:#fff}
+
+    /* Контакты */
+    .contact-grid{display:flex;gap:70px;flex-wrap:wrap}
+    .contact-col{flex:1 1 320px}
+    .contact-col h2{font-size:clamp(28px,3.5vw,42px);margin-bottom:30px}
+    .contact-line{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid var(--line)}
+    .contact-line i{color:var(--accent);font-size:16px;margin-top:5px;width:20px;text-align:center}
+    .contact-line .label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft);margin-bottom:3px}
+    .contact-line p,.contact-line a{font-size:16px}
+    .contact-line a:hover{color:var(--accent)}
+
+    .schedule-list{list-style:none}
+    .schedule-list li{
+        display:flex;justify-content:space-between;padding:13px 0;
+        border-bottom:1px solid var(--line);font-size:14.5px;
+    }
+    .schedule-list li span:first-child{color:var(--ink-soft)}
+    .schedule-list li span:last-child{font-weight:500}
+    .schedule-list li:last-child{border-bottom:none}
+
+    .payment-inline{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+    .pay-badge{
+        font-size:11px;letter-spacing:1px;text-transform:uppercase;
+        border:1px solid var(--line);padding:9px 16px;border-radius:40px;color:var(--ink-soft);
+    }
+    .pay-badge i{color:var(--accent);margin-right:6px}
+
+    .status{
+        display:inline-flex;align-items:center;gap:8px;margin-top:22px;
+        font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);
+    }
+
+    /* Подвал */
+    footer{background:var(--bg-soft);border-top:1px solid var(--line);padding:60px 0 34px}
+    .footer-inner{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:center}
+    .footer-logo{font-family:'Cormorant Garamond',serif;font-size:24px;letter-spacing:3px;text-transform:uppercase}
+    .footer-logo span{display:block;font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:4px;color:var(--ink-soft);margin-top:5px}
+    .footer-copy{font-size:12px;color:var(--ink-soft);letter-spacing:.5px}
+    .footer-social a{color:var(--ink-soft);margin-left:18px;font-size:15px;transition:color .3s}
+    .footer-social a:hover{color:var(--accent)}
+
+    /* Адаптив */
+    @media(max-width:980px){
+        .services-grid{grid-template-columns:1fr}
+        .specialists{grid-template-columns:1fr}
+        .section{padding:80px 0}
+        .hero-grid, .about-grid {gap:40px}
+        .hero-visual img {min-height:400px;}
+        .about-visual img {min-height:400px;}
+    }
+    @media(max-width:720px){
+        .container{padding:0 20px}
+        .nav{display:none}
+        .features{grid-template-columns:1fr}
+        .prices-strip{flex-direction:column}
+        .section{padding:64px 0}
+        .hero-meta{gap:24px}
+        .footer-inner{flex-direction:column;text-align:center}
+        .footer-social a{margin:0 10px}
+    }
+</style>
+</head>
+<body>
+
+<!-- Шапка -->
+<header>
+    <div class="container header-inner">
+        <a href="#" class="logo">Регина<span>Салон красоты · Зеленоградск</span></a>
+        <nav class="nav">
+            <a href="#services">Услуги</a>
+            <a href="#about">О салоне</a>
+            <a href="#team">Специалисты</a>
+            <a href="#contacts">Контакты</a>
+        </nav>
+        <div class="header-cta">
+            <span class="rating"><i class="fas fa-star"></i>4,5</span>
+            <a class="header-phone" href="tel:+79062306088"><i class="fas fa-phone-alt"></i>+7 (906) 230-60-88</a>
+            <a href="#contacts" class="btn" style="padding:11px 22px;font-size:11px">Записаться</a>
+        </div>
+    </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-grid">
+            <div class="hero-copy">
+                <div class="hero-text-content">
+                    
+                    <h1>Сочетаем опыт,<br>технологии и стремление<br>к <em>совершенству</em></h1>
+                    <p>Чтобы подчеркнуть вашу естественную красоту. Парикмахерские услуги, маникюр и педикюр, косметология — всё в одном пространстве, где о вас заботятся.</p>
+                    <a href="#services" class="btn">Услуги и цены <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="hero-meta">
+                    <div><b>4,5</b><span>Рейтинг гостей</span></div>
+                    <div><b>09–19</b><span>Ежедневно</span></div>
+                    <div><b>28</b><span>Курортный просп.</span></div>
+                </div>
+            </div>
+            <figure class="hero-visual">
+                <!-- Заменил на стабильную ссылку с Unsplash (женщина в салоне) -->
+                <img src="https://avatars.mds.yandex.net/get-altay/21009421/2a000001a0c84f3fca08a907c878830fe744/XXXL" alt="Салон красоты «Регина»" loading="lazy">
+                <figcaption>Регина — красота в деталях</figcaption>
+            </figure>
+        </div>
+    </div>
+</section>
+
+<!-- Услуги и цены -->
+<section class="section section--soft" id="services">
+    <div class="container">
+        <div class="section-head">
+            <div>
+                <div class="eyebrow">{ Услуги и цены }</div>
+                <h2>Услуги нашего салона</h2>
+            </div>
+            <p>Широкий спектр парикмахерских услуг, маникюра, педикюра и косметологии. Вам не нужно разбираться в многообразии процедур — просто приходите, мы позаботимся о вас.</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-col">
+                <h3><i class="fas fa-hand-sparkles"></i>Маникюр и педикюр</h3>
+                <ul>
+                    <li>Женский маникюр</li>
+                    <li>Мужской маникюр</li>
+                    <li>Женский педикюр</li>
+                    <li>Мужской педикюр</li>
+                    <li>Парафинотерапия</li>
+                </ul>
+            </div>
+            <div class="service-col">
+                <h3><i class="fas fa-cut"></i>Парикмахерские услуги</h3>
+                <ul>
+                    <li>Женские стрижки</li>
+                    <li>Мужские стрижки</li>
+                    <li>Укладка</li>
+                    <li>Окрашивание</li>
+                    <li>Сложное окрашивание</li>
+                    <li>Мелирование</li>
+                    <li>Осветление</li>
+                    <li>Тонирование</li>
+                    <li>Контуринг волос</li>
+                    <li>Биоламинирование</li>
+                    <li>Химическая завивка</li>
+                    <li>Уходовые процедуры для волос</li>
+                </ul>
+            </div>
+            <div class="service-col">
+                <h3><i class="fas fa-spa"></i>Косметология</h3>
+                <ul>
+                    <li>Косметологические услуги</li>
+                    <li>Коррекция бровей</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="prices-strip">
+            <div class="price-cell">
+                <span class="name">Женская стрижка</span>
+                <span class="val">от 800 ₽</span>
+            </div>
+            <div class="price-cell">
+                <span class="name">Мужская стрижка</span>
+                <span class="val">от 500 ₽</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- О салоне -->
+<section class="section" id="about">
+    <div class="container">
+        <div class="about-grid">
+            <figure class="about-visual">
+                <!-- Заменил на стабильную ссылку с Unsplash (интерьер салона) -->
+                <img src="https://avatars.mds.yandex.net/get-altay/16411237/2a0000019a43ea6be115f3c0ccfe897392eb/XXXL" alt="Интерьер салона" loading="lazy">
+            </figure>
+            <div class="about-copy">
+                <div class="eyebrow">{ О салоне }</div>
+                <h2>Красота по современным стандартам</h2>
+                <p>Наша цель — предоставлять парикмахерские и косметологические услуги по современным стандартам качества. Мы позаботились о каждой детали, чтобы вы сразу почувствовали себя комфортно: от приятной атмосферы и дружелюбного персонала до профессиональных материалов и методик.</p>
+                <p>Мы делаем всё возможное, чтобы ваше посещение было комфортным и результативным.</p>
+
+                <div class="features">
+                    <div class="feature"><i class="fas fa-user-check"></i><div><b>Индивидуальный подход</b><span>Учитываем ваши пожелания и особенности</span></div></div>
+                    <div class="feature"><i class="fas fa-award"></i><div><b>Квалифицированные специалисты</b><span>Постоянно повышают квалификацию</span></div></div>
+                    <div class="feature"><i class="fas fa-leaf"></i><div><b>Профессиональные материалы</b><span>Проверенная косметика</span></div></div>
+                    <div class="feature"><i class="fas fa-map-marker-alt"></i><div><b>Удобное расположение</b><span>Курортный просп., 28</span></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Специалисты -->
+<section class="section section--soft" id="team">
+    <div class="container">
+        <div class="team-text">
+            <div class="eyebrow">{ Специалисты }</div>
+            <h2>Специалисты нашего салона</h2>
+            <p>Специалисты «Регины» являются истинными профессионалами в области красоты. Мы постоянно совершенствуем навыки и следим за последними тенденциями и технологиями в индустрии.</p>
+            <p>Мы понимаем, что каждый человек уникален и имеет свои индивидуальные потребности. Поэтому наш главный приоритет — персонализированный и высококачественный уход, который соответствует вашим требованиям.</p>
+        </div>
+
+        <div class="specialists">
+            <div class="specialist">
+                <div class="num">01</div>
+                <h3>Парикмахеры-стилисты</h3>
+                <p>Стрижки, окрашивание, укладка и уходовые процедуры для волос — от классики до сложного окрашивания.</p>
+            </div>
+            <div class="specialist">
+                <div class="num">02</div>
+                <h3>Мастера маникюра</h3>
+                <p>Женский и мужской маникюр и педикюр, парафинотерапия и уход за кожей рук.</p>
+            </div>
+            <div class="specialist">
+                <div class="num">03</div>
+                <h3>Косметолог</h3>
+                <p>Косметологические услуги и коррекция бровей — деликатный уход за кожей лица.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <div class="container">
+        <h2>Доверьте свою красоту <span>профессионалам</span></h2>
+        <a href="#contacts" class="btn">Записаться в салон <i class="fas fa-arrow-right"></i></a>
+    </div>
+</section>
+
+<!-- Контакты -->
+<section class="section" id="contacts">
+    <div class="container">
+        <div class="contact-grid">
+            <div class="contact-col">
+                <div class="eyebrow">{ Как нас найти }</div>
+                <h2>Контакты</h2>
+
+                <div class="contact-line">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <div class="label">Адрес</div>
+                        <p>Курортный просп., 28, Зеленоградск</p>
+                        <a href="#" style="font-size:13px;color:var(--accent);text-decoration:underline">Показать входы / Маршрут</a>
+                    </div>
+                </div>
+                <div class="contact-line">
+                    <i class="fas fa-phone-alt"></i>
+                    <div>
+                        <div class="label">Телефон</div>
+                        <a href="tel:+79062306088">+7 (906) 230-60-88</a>
+                    </div>
+                </div>
+                <div class="contact-line">
+                    <i class="fas fa-star"></i>
+                    <div>
+                        <div class="label">Рейтинг</div>
+                        <p>4,5 из 5 — оценка наших гостей</p>
+                    </div>
+                </div>
+
+                <div class="payment-inline">
+                    <span class="pay-badge"><i class="fas fa-money-bill-wave"></i>Наличными</span>
+                    <span class="pay-badge"><i class="fas fa-credit-card"></i>Картой</span>
+                    <span class="pay-badge"><i class="fas fa-university"></i>Переводом</span>
+                </div>
+            </div>
+
+            <div class="contact-col">
+                <div class="eyebrow">{ График работы }</div>
+                <h2>Открыто до 19:00</h2>
+                <ul class="schedule-list">
+                    <li><span>Понедельник</span><span>09:00–19:00</span></li>
+                    <li><span>Вторник</span><span>09:00–19:00</span></li>
+                    <li><span>Среда</span><span>09:00–19:00</span></li>
+                    <li><span>Четверг</span><span>09:00–19:00</span></li>
+                    <li><span>Пятница</span><span>09:00–19:00</span></li>
+                    <li><span>Суббота</span><span>09:00–19:00</span></li>
+                    <li><span>Воскресенье</span><span>09:00–19:00</span></li>
+                </ul>
+                <div class="status"><i class="fas fa-check-circle"></i> Ежедневно, без выходных</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Подвал -->
+<footer>
+    <div class="container footer-inner">
+        <div class="footer-logo">Регина<span>Салон красоты · Зеленоградск</span></div>
+        <div class="footer-copy">© 2025 Салон красоты «Регина». Курортный просп., 28.</div>
+        <div class="footer-social">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="VK"><i class="fab fa-vk"></i></a>
+            <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
